@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,700,700i&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+
+
+/* القائمة */
+nav {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    /* تأكد من تحديد العنصر الأساسي بنوعية position: relative */
+    z-index: 1000;
+    background-color: #222222;
+}
+
+.item {
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* label.logo{
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    padding: 0 100px;
+    line-height: 80px;
+} */
+nav ul {
+    float: right;
+    margin-right: 40px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 8px;
+    line-height: 80px;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 38px;
+    font-family: Rubik;
+    /* text-transform: uppercase; */
+    border: 1px solid transparent;
+    padding: 7px 10px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+nav a.active,
+a:hover {
+    border: 1px solid rgb(255, 251, 217);
+    transition: .5s;
+    background-color: #739379;
+    color: #2f3640;
+}
+
+a.active1 {
+    border: 1px solid rgb(255, 251, 217);
+    border-radius: 20px;
+    transition: .5s;
+}
+
+nav #icon {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    line-height: 80px;
+    float: right;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width:1650px) {
+
+    nav ul {
+        margin-right: 20px;
+    }
+
+    nav a {
+        font-size: 17px;
+    }
+}
+
+@media (max-width:600px) {
+    nav ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2f3640;
+        top: 80px;
+        left: -110%;
+        text-align: center;
+        transition: all .5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    nav li {
+        display: block;
+        margin: 20px 0;
+        line-height: 30px;
+    }
+
+    nav #icon {
+        display: block;
+        margin-top: -25px;
+    }
+
+    nav a {
+        font-size: 17px;
+        color: white;
+    }
+
+    a.active,
+    a:hover {
+        border: none;
+        color: #739379;
+    }
+
+    nav ul.show {
+        left: 0;
+    }
+
+}
+
+
+
+/* الخط والزر */
+body {
+    font-family: Rubik;
+    background-color: #739379;
+    overflow-x: hidden;
+    margin: 0px;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 30px 0px 0px;
+}
+
+/* القسم الاول */
+#Home {
+    order: 1;
+    align-items: center; /* توسيط عمودي */
+    justify-items: center; /* توسيط أفقي */
+    position: static;
+    width: 95%;
+    background-image: url('mountain.png');
+    height: 675px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px ;
+    margin-top: 30px;
+    margin-bottom: -110px;
+}
+
+h1{
+    margin-top: 20%;
+    text-align: center;
+    justify-content: center;
+    font-size: 64px;
+    color: white;
+    text-shadow: #2f3640;
+    margin-bottom: auto;
+}
+#Home p{
+    color: white;
+    text-align: center;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
+   text-justify:inter-word;
+
+}
+
+
+button {
+    text-align: center;
+    justify-content: center;
+    padding: 10px 30px 10px 30px;
+    border-radius: 50px;
+    color: white;
+    background-color: transparent; 
+    border-color: white;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: Rubik;
+    margin: 0 auto; /* توسيط الزر أفقياً */
+    display: block;
+}
+
+button:hover {
+    background-color: #739379;
+    color: #222222;
+}
+
+/* تنسيق عام */
+/* 1. التقسيم لنصين */
+.left {
+    width: 50%;
+    float: left;
+}
+
+.right {
+    width: 50%;
+    float: right;
+}
+
+
+/* القسم الثاني */
+#About{
+    order: 2;
+    color: white;
+    text-align: center; /* توسيط ومحاذاة النص */
+}
+
+/* #About .right{
+        /* padding: 30px
+
+} */
+
+/* القسم الثالث */
+#Features{
+    order: 3;
+    text-align: center; 
+    margin: auto;
+    margin-top: 50px;
+}
+h2{
+    font-size: 40px;
+    color: white;
+}
+
+/* التذليل */
+footer {
+    order: 5;
+    background-color: #222222;
+    text-align: center;
+    height: 150px;
+    /* margin-top: 150px; */
+}
+
+.social-links {
+    text-align: right;
+    margin: 30px;
+}
+
+.social-links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fa-brands {
+    color: white;
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+.logo img {
+    display: inline-block;
+    /* margin-top: -150px; */
+}
+
+.rights p {
+    font-size: 14px;
+    /* margin-top: -80px; */
+    color: white;
+    /* margin-bottom: 25px; */
+}
+
+.right2 {
+    float: right;
+    margin-right: 10px;
+}
+
+.left2 {
+    float: left;
+    margin-left: 10px;
+}
+
+
+.anim {
+    opacity: 0;
+    transform: translateY(30px) rotate(0deg);
+    /* تحديد زاوية الدوران بصفر درجة في البداية */
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+
+.anim4 {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.anim5 {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.anim3 {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0) rotate(360deg);
+}
+
+.show4 {
+    opacity: 1;
+    transform: translateX(0);
+    animation-delay: 0.5s;
+}
+
+.show3 {
+    opacity: 1;
+    transform: translateY(0);
+    animation-delay: 1s;
+}
+
+/* Responsive */
+@media (min-width:600px) {
+
+    #Lengthwise {
+        display: none;
+    }
+}
+
+@media (max-width:1650px) {
+    .left {
+        width: 50%;
+    }
+
+    .right {
+        width: 50%;
+    }
+
+    #hello {
+        margin: 30px 30px 50px 50px;
+    }
+
+    #About {
+        height: 150px;
+        width: 100%;
+        order: 2;
+        margin-top: 200px;
+        margin-right: -15px;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    #About text,
+    p {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #How {
+        margin-top: 100px;
+    }
+
+    h3 {
+        margin-top: -20px;
+    }
+    
+    .anim4,
+    .anim5 {
+        opacity: 1;
+        transform: translateX(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .anim3 {
+        opacity: 1;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+}
+
+@media (max-width:600px) {
+    
+    #Features{
+        margin-top: 250px;
+    }
+    .left {
+        width: 100%;
+        float: center;
+        margin-top: -1px;
+        text-align: center;
+    }
+    h1{
+        font-size: 25px;
+        margin-top: 180px;
+    }
+
+    .h2{
+        font-size: 16px;
+    }
+    p{
+        font-size: 17px;
+        }
+    img {
+        width: 80%; 
+        height: auto;
+    }
+
+    .right {
+        width: 100%;
+        float: center;
+        margin-top: -1px;
+        text-align: center;
+    }
+
+    .fa-brands {
+        color: white;
+        font-size: 16px;
+        padding-left: 10px;
+    }
+
+    .rights p {
+        font-size: 9px;
+    }
+
+
+
+    #About p {
+        font-size: 18px;
+    }
+
+    .anim {
+        opacity: 1;
+        transform: translateY(1px) rotate(0deg);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .anim4,
+    .anim5 {
+        opacity: 1;
+        transform: translateX(1px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .anim3 {
+        opacity: 1;
+        transform: translateY(1px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+}

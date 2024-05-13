@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Admin Page</title>
+</head>
+<body>
+    <div class="container">
+        <h2> إضافة مكان جديدة 🔥</h2>
+        <form id="eventForm">
+            <label for="name"> اسم المكان </label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="description"> الوصف </label>
+            <textarea id="description" name="description" required></textarea>
+
+            
+
+            <label for="img"> رابط الصورة الاساسية</label>
+            <a href="https://postimages.org/" target="_blank">رابط مساعد لتحويل الصورة لرابط مباشر نختار</a>
+            <br>
+
+<br>
+            <input type="text" id="img" name="img" required placeholder="التاكد من ان الصورة تنتهي ب .png , .jpg ..">
+
+            <label for="img"> رابط الصور الثانية</label>
+            <input type="text" id="img1" name="img1" required >
+            <input type="text" id="img2" name="img2" required >
+            <input type="text" id="img3" name="img3" required >
+
+
+
+            <label for="keyword">كلمة رئيسية </label>
+            <input type="text" id="keyword" name="keyword" required>
+
+            <label for="type"> اختر نوع المكان </label>
+            <select id="type" name="type">
+                <option value="مطعم">مطعم</option>
+                <option value="فندق">فندق</option>
+                <option value="منتزة">منتزة</option>
+                <option value="وادي">وادي</option>
+                <option value="سد">سد</option>
+                <option value="مول">مول</option>
+                <option value="نادي">نادي</option>
+                <option value="بقالة">بقالة</option>
+                <option value="مستشفى">مستشفى</option>
+                <option value="مقهى">مقهى</option>
+                <option value="مدرسة">مدرسة</option>
+                <option value="مسجد">مسجد</option>
+                <option value="سوق">سوق</option>
+            </select>
+
+            <label for="location"> وصف للموقع </label>
+            <textarea type="text" id="location" name="location" placeholder="حطوا عشان ينزل سطر <br> لو حطيتوا enter ما بيطلع بالموقع ترون"></textarea>
+
+            <label for="link"> رابط الموقع من قوقل ماب </label>
+            <input type="text" id="link" name="link" required>
+
+            
+            <label for="charcterstic">  المميزات </label>
+            <textarea type="text" id="charcterstic" name="charcterstic" placeholder="بدل السطر الجديد نحط <br>"></textarea>
+
+
+            <label for="serves">الخدمات</label>
+            <textarea type="text" id="serves" name="serves" required></textarea>
+
+            <button type="button" onclick="addEvent()">إضافة المكان</button>
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
