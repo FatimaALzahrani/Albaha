@@ -3,6 +3,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 
+.anim4 {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.anim5 {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.anim3 {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0) rotate(360deg);
+}
+
+.show4 {
+    opacity: 1;
+    transform: translateX(0);
+    animation-delay: 0.5s;
+}
+
+.show3 {
+    opacity: 1;
+    transform: translateY(0);
+    animation-delay: 1s;
+}
 
 /* القائمة */
 nav {
@@ -289,48 +323,23 @@ footer {
     margin-left: 10px;
 }
 
-
-.anim {
-    opacity: 0;
-    transform: translateY(30px) rotate(0deg);
-    /* تحديد زاوية الدوران بصفر درجة في البداية */
-    transition: opacity 0.5s, transform 0.5s;
+.icons{
+    font-size: 30px;
+    color: #1d541f;
+    margin-bottom: 15px;
 }
 
-
-.anim4 {
-    opacity: 0;
-    transform: translateX(80px);
-    transition: opacity 0.5s, transform 0.5s;
+.box{
+    width: 33.33%;
+    padding: 20px; 
+    background-color: #EDEDED;
+    margin: 10px;
+    border-radius: 20px;
 }
-
-.anim5 {
-    opacity: 0;
-    transform: translateX(-80px);
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-.anim3 {
-    opacity: 0;
-    transform: translateY(-30px);
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0) rotate(360deg);
-}
-
-.show4 {
-    opacity: 1;
-    transform: translateX(0);
-    animation-delay: 0.5s;
-}
-
-.show3 {
-    opacity: 1;
-    transform: translateY(0);
-    animation-delay: 1s;
+.boxs{
+    display: flex;
+    padding-bottom: 30px;
+    margin-right: -30px;
 }
 
 /* Responsive */
@@ -396,7 +405,15 @@ footer {
 }
 
 @media (max-width:600px) {
-    
+    .box{
+        width: 80%;
+    }
+    .boxs{
+            display: block;
+            margin-right: 0px;
+
+    }
+
     #Features{
         margin-top: 250px;
     }
@@ -462,5 +479,8 @@ footer {
         opacity: 1;
         transform: translateY(1px);
         transition: opacity 0.5s, transform 0.5s;
+    }
+    .log{
+        width: 100px;
     }
 }

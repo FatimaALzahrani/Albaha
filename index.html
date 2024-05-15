@@ -11,8 +11,7 @@
     <link rel="preconnect"
         href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w0aXpsog.woff2"
         crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
 </head>
 
 <body>
@@ -20,7 +19,7 @@
     <nav>
         <!-- <label class="logo">GDSCBU</label> -->
         <ul>
-            <li><img src="image.png" width="70px"></li>
+            <li><img src="image.png" width="70px"  style="padding-top: 15px;"></li>
             <li class="item"><a href="#Home">الرئيسية</a></li>
             <li class="item"><a href="#About">عن الباحة</a></li>
             <li class="item"><a href="#Features">مميزاتنا</a></li>
@@ -33,8 +32,8 @@
         </label>
     </nav>
     <main>
-        <section id="Home">
-            <h1>مرحبًا هيل عد السيل</h1>
+        <section id="Home" >
+            <h1 class="anim5">مرحبًا هيل عد السيل</h1>
             <p>موقع السياحة في مدينة الضباب يعتبر كموسوعة شاملة لمنطقة الباحة حيث يشمل نبذه عن المنطقة وابرز الاماكن
                 السياحية فيها</p>
             <a href="Explore.html"><button>تصفح</button></a>
@@ -42,10 +41,10 @@
 
         <section id="About">
             <div class="right">
-                <h2>
+                <h2 class="anim4">
                     منطقة الباحة
                 </h2>
-                <h5>
+                <h5 class="anim5">
                     تحفل أراضي الباحة بغابات كثيفة، وبجبال، وبشلالات، وبأودية ذات طبيعة آسرة، كما تحتفظ المنطقة بتاريخٍ
                     موغل في القدم، يبرز في النقوش والرسومات التي تُركت على جبالها وأوديتها، إضافة إلى تراث زاخر
                     بالتقاليد العريقة، يتضحّ في أطباقها التقليدية، وقراها التاريخية، ومتاحفها التراثية، وأسواقها
@@ -60,19 +59,19 @@
             <h2 style="padding: 20px;text-align: center;">
                 مميزاتنا
             </h2>
-            <div style="display: flex;padding-bottom: 30px;">
-                <div style="width: 33.33%; padding: 20px; background-color: #EDEDED;margin: 10px;border-radius: 20px;">
-                    <i class="fas fa-info-circle" style=" font-size: 30px;color: #1d541f;margin-bottom: 15px;"></i>
+            <div class="boxs">
+                <div class="box">
+                    <i class="fas fa-info-circle icons"></i>
                     <h3 style="padding-top: 10px;">محتوى غني</h3>
                     <p style="padding-top: 10px;">نعرض معلومات مفصلة وصورًا جذابة للأماكن السياحية في الباحة، لتعزيز تجربة الزوار.</p>
                 </div>
-                <div style="width: 33.33%; padding: 20px; background-color: #EDEDED;margin: 10px;border-radius: 20px;">
-                    <i class="fas fa-search" style=" font-size: 30px;color: #1d541f;margin-bottom: 15px;"></i>
+                <div class="box">
+                    <i class="fas fa-search icons"></i>
                     <h3 style="padding-top: 10px;">تفاعلية وسهولة الاستخدام</h3>
                     <p style="padding-top: 10px;">يتميز موقعنا بواجهة مستخدم سهلة الاستخدام وتجربة تفاعلية، مما يسهل على الزوار البحث واستكشاف الأماكن بسهولة.</p>
                 </div>
-                <div style="width: 33.33%; padding: 20px; background-color: #EDEDED;margin: 10px;border-radius: 20px;">
-                    <i class="fas fa-clock" style=" font-size: 30px;color: #1d541f;margin-bottom: 15px;"></i>
+                <div class="box">
+                    <i class="fas fa-clock icons"></i>
                     <h3 style="padding-top: 10px;">توفير الوقت والجهد</h3>
                     <p style="padding-top: 10px;">نوفر للزوار تجربة بحث واستكشاف ميسرة توفر الوقت والجهد، من خلال توفير معلومات دقيقة ومنظمة بشكل جيد.</p>
                 </div>
@@ -80,6 +79,7 @@
         </section>
 
         <section id="Event">
+            
             </section>
             </main>
     <!-- التذليل -->
@@ -96,7 +96,7 @@
         </div>
         <div class="right2">
             <div class="logo">
-                <img src="google.png" />
+                <img class="log" src="image.png" width="100px" style="padding: 15px;"/>
             </div>
             <div class="rights">
                 <p>جميع الحقوق محفوظة لوزارة التعليم</p>
@@ -104,11 +104,11 @@
         </div>
     </footer>
 
-
     <script src="https://kit.fontawesome.com/d5c6986420.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
+
 </body>
 
 </html>
