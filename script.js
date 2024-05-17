@@ -1,3 +1,19 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    const image = document.querySelector('.dynamic-img');
+    
+    const imageUrls = [
+        'img1.png',
+        'img2.png',
+        'img3.png'
+    ];
+
+    let currentIndex = 0;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+        image.src = imageUrls[currentIndex];
+    }, 2000); // Change image every 5 seconds
+});
 
 // القائمة
 $(document).ready(function () {

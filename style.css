@@ -254,9 +254,11 @@ button:hover {
 
 /* القسم الثاني */
 #About{
+    margin-top: 150px;
     order: 2;
     color: white;
     text-align: center; /* توسيط ومحاذاة النص */
+    margin-bottom: -150px;
 }
 
 /* #About .right{
@@ -266,19 +268,104 @@ button:hover {
 
 /* القسم الثالث */
 #Features{
-    order: 3;
+    order: 4;
     text-align: center; 
-    margin: auto;
-    margin-top: 50px;
+    margin-top: 150px;
 }
 h2{
     font-size: 40px;
     color: white;
 }
 
+
+
+/* احصائيات */
+#Numbers {
+    height: 100px;
+    width: 90%;
+    order: 3;
+    margin-top: -200px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#Numbers text{
+    color: #fff;
+}
+
+#Numbers table {
+    padding-right: 25px;
+    padding-left: 25px;
+    background-color: #bcd6c1;
+    height: 200px;
+    width: 80%;
+    border-radius: 80px;
+    justify-items: center;
+}
+
+#Numbers td {
+    text-align: center;
+    padding-top: -15px;
+    padding-bottom: 5px;
+    line-height: 0;
+    /* تعيين قيمة line-height */
+
+}
+
+#Numbers text,
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#Event {
+    order: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-justify: inter-word;
+}
+
+.ev{
+    display: flex;
+    justify-content: space-between;
+}
+
+#Event h3 {
+    color: #EDEDED;
+    text-align: right;
+    margin-right: 150px;
+    margin-left: 150px;
+}
+
+#Event p {
+    color: #dbdddb;
+    font-size: 15px;
+    text-align: right;
+    margin-right: 150px;
+    margin-left: 150px;
+}
+
+.image-container img {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    transition: transform 0.3s ease-in-out;
+    clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+}
+
 /* التذليل */
 footer {
-    order: 5;
+    order: 6;
     background-color: #222222;
     text-align: center;
     height: 150px;
@@ -342,6 +429,7 @@ footer {
     margin-right: -30px;
 }
 
+
 /* Responsive */
 @media (min-width:600px) {
 
@@ -363,7 +451,7 @@ footer {
         margin: 30px 30px 50px 50px;
     }
 
-    #About {
+    #Numbers {
         height: 150px;
         width: 100%;
         order: 2;
@@ -376,7 +464,7 @@ footer {
         font-weight: 600;
     }
 
-    #About text,
+    #Numbers text,
     p {
         font-size: 20px;
         font-weight: bold;
@@ -405,6 +493,22 @@ footer {
 }
 
 @media (max-width:600px) {
+    .ev{
+        display: block;
+    }
+    
+#Event h3 {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#Event p {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#Event img{
+    display: none;
+}
     .box{
         width: 80%;
     }
@@ -412,6 +516,9 @@ footer {
             display: block;
             margin-right: 0px;
 
+    }
+    #Crosswise {
+        display: none;
     }
 
     #Features{
@@ -460,6 +567,45 @@ footer {
 
     #About p {
         font-size: 18px;
+    }
+
+    #Numbers {
+        height: 700px;
+    }
+
+    #Numbers p {
+        font-size: 18px;
+    }
+
+    #Numbers td {
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    #Numbers td svg,
+    #Numbers td p {
+        margin-top: 10px;
+    }
+
+    #Crosswise {
+        display: none;
+    }
+
+    #Numbers table {
+        padding-right: 25px;
+        padding-left: 25px;
+        background-color: #bcd6c1;
+        width: 200px;
+        border-radius: 80px;
+        justify-items: center;
+    }
+
+    #Numbers td {
+        text-align: center;
+        padding-top: -15px;
+        padding-bottom: 5px;
+        line-height: 0;
+        /* تعيين قيمة line-height */
     }
 
     .anim {
