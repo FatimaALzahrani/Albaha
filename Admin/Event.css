@@ -1,0 +1,592 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,700,700i&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+/* القائمة */
+nav {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    background-color: #222222;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    /* تأكد من تحديد العنصر الأساسي بنوعية position: relative */
+    z-index: 1000;
+    background-color: #222222;
+
+}
+
+.item {
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* label.logo{
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    padding: 0 100px;
+    line-height: 80px;
+} */
+nav ul {
+    float: right;
+    margin-right: 40px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 8px;
+    line-height: 80px;
+
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 38px;
+    font-family: Rubik;
+    /* text-transform: uppercase; */
+    border: 1px solid transparent;
+    padding: 7px 10px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+a.active,
+a:hover {
+    border: 1px solid rgb(255, 251, 217);
+    transition: .5s;
+    background-color: #739379;
+    color: #2f3640;
+}
+
+a.active1 {
+    border: 1px solid rgb(255, 251, 217);
+    border-radius: 20px;
+    transition: .5s;
+}
+
+nav #icon {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    line-height: 80px;
+    float: right;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width:1650px) {
+
+    nav ul {
+        margin-right: 20px;
+    }
+
+    nav a {
+        font-size: 17px;
+    }
+}
+
+@media (max-width:600px) {
+    nav ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2f3640;
+        top: 80px;
+        left: -110%;
+        text-align: center;
+        transition: all .5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    nav li {
+        display: block;
+        margin: 20px 0;
+        line-height: 30px;
+    }
+
+    nav #icon {
+        display: block;
+        margin-top: -25px;
+    }
+
+    nav a {
+        font-size: 17px;
+        color: white;
+    }
+
+    a.active,
+    a:hover {
+        border: none;
+        color: #3498db;
+    }
+
+    nav ul.show {
+        left: 0;
+    }
+
+}
+
+
+
+/* الخط والزر */
+body {
+    font-family: Rubik;
+    display: flex;
+    flex-direction: column;
+    background-color: #739379;
+}
+
+/* تنسيق المربعات */
+#Explore {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 20px;
+}
+
+.rectangle {
+    width: 330px;
+    height: 417px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.rectangle img {
+    width: 330px;
+    height: 199px;
+    object-fit: cover;
+}
+
+.description {
+    text-align: center;
+}
+
+.inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.type {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 10px;
+}
+
+.type h5 {
+    border-radius: 20px;
+    width: 100px;
+    padding: 3px;
+    color: white;
+}
+
+.time h5 {
+    border-radius: 20px;
+    width: 100px;
+    padding: 3px;
+    color: white;
+}
+
+.title {
+    font-size: 1.5em;
+}
+
+.description {
+    text-align: center;
+}
+
+.description h5 {
+    margin: 0;
+}
+
+.description .title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* .description .detail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 200px; 
+} */
+
+p {
+    color: #979494;
+    font-size: 13px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* landing */
+.animated-bg {
+    background-image: linear-gradient(to right,
+            #f6f7f8 0%,
+            #edeef1 10%,
+            #f6f7f8 20%,
+            #f6f7f8 100%);
+    background-size: 200% 100%;
+    animation: bgPos 1s linear infinite;
+}
+
+.animated-bg-text {
+    border-radius: 50px;
+    display: inline-block;
+    margin: 0;
+    height: 10px;
+    width: 100%;
+}
+
+@keyframes bgPos {
+    0% {
+        background-position: 50% 0;
+    }
+
+    100% {
+        background-position: -150% 0;
+    }
+}
+
+.slanted-bar {
+    position: relative;
+    padding: 20px;
+    background: linear-gradient(to left bottom, transparent 49.5%, red 50%, transparent 50.5%);
+    z-index: 1;
+    /* تحديد ترتيب الطبقة */
+}
+
+.slanted-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right top, transparent 49.5%, red 50%, transparent 50.5%);
+    z-index: -1;
+}
+
+/* التذليل *//* التذليل */
+footer {
+    order: 5;
+    background-color: #222222;
+    text-align: center;
+    height: 150px;
+    /* margin-top: 150px; */
+}
+
+.social-links {
+    text-align: right;
+    margin: 30px;
+}
+
+.social-links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fa-brands {
+    color: white;
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+.logo img {
+    display: inline-block;
+    /* margin-top: -150px; */
+}
+
+.rights p {
+    font-size: 14px;
+    /* margin-top: -80px; */
+    color: white;
+    /* margin-bottom: 25px; */
+}
+
+.right2 {
+    float: right;
+    margin-right: 10px;
+}
+
+.left2 {
+    float: left;
+    margin-left: 10px;
+}
+/* التصفح */
+#chose {
+    /* background-color: #f0f0f0; */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    margin: 0;
+}
+
+
+#type-dropdown {
+    margin-right: 10px;
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-family: Rubik;
+}
+
+#type-dropdown option {
+    padding: 5px;
+}
+
+.fa-bars {
+    font-size: 24px;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width:1650px) {}
+
+@media (max-width:750px) {
+    #Explore {
+        margin: 20px auto;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* اضافة انيميشن */
+.anim2 {
+    opacity: 0;
+    transform: translateY(3px) translateX(-3px);
+    /* تحريك لأسفل ولليسار في البداية */
+    animation: moveup 0.5s linear forwards;
+}
+
+@keyframes moveup {
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        /* العودة إلى الوضع الأصلي في نهاية الانيميشن */
+    }
+}
+
+
+.anim {
+    opacity: 0;
+    transform: translateY(30px) rotate(0deg);
+    /* تحديد زاوية الدوران بصفر درجة في البداية */
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+
+.anim4 {
+    opacity: 0;
+    transform: translateX(200px);
+    /* تغيير القيمة إلى التحويل من اليمين */
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.anim5 {
+    opacity: 0;
+    transform: translateX(-200px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.anim3 {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0) rotate(360deg);
+}
+
+.show4 {
+    opacity: 1;
+    transform: translateX(0);
+    animation-delay: 0.5s;
+}
+
+.show3 {
+    opacity: 1;
+    transform: translateY(0);
+    animation-delay: 1s;
+}
+
+
+/* الالوان */
+
+.color_1 {
+    background-color: rgb(211, 1, 29);
+}
+
+.color_1_ {
+    background-image: linear-gradient(90deg, rgb(211, 1, 29), #F4A6A0);
+}
+
+.color_2 {
+    background-color: #3A5268;
+}
+
+.color_2_ {
+    background-image: linear-gradient(90deg, #3A5268, #73A2CE);
+}
+
+.color_3 {
+    background-color: #567B63;
+}
+
+.color_3_ {
+    background-image: linear-gradient(90deg, #567B63, #A9DEBB);
+}
+
+.color_4 {
+    background-color: #e0900e;
+}
+
+.color_4_ {
+    background-image: linear-gradient(90deg, #e0900e, #dec3a9);
+}
+
+.color_5 {
+    background-color: #7b5670;
+}
+
+.color_5_ {
+    background-image: linear-gradient(90deg, #7b5670, #dea9cd);
+}
+
+.color_6 {
+    background-color: #101e6c;
+}
+
+.color_6_ {
+    background-image: linear-gradient(90deg, #101e6c, #98a4e6);
+}
+
+.color_7 {
+    background-color: #a53d76;
+}
+
+.color_7_ {
+    background-image: linear-gradient(90deg, #a53d76, #d89abc);
+}
+
+.color_8 {
+    background-color: #127b60;
+}
+
+.color_8_ {
+    background-image: linear-gradient(90deg, #127b60, #a8cbc2);
+}
+
+.color_9 {
+    background-color: #ccd614;
+}
+
+.color_9_ {
+    background-image: linear-gradient(90deg, #ccd614, #d5d892);
+}
+
+.color_10 {
+    background-color: #4f4536;
+}
+
+.color_10_ {
+    background-image: linear-gradient(90deg, #4f4536, #e2d0b5);
+}
+
+.color_11 {
+    background-color: #CEA510;
+}
+
+.color_11_ {
+    background-image: linear-gradient(90deg, #CEA510, #C3BA9A);
+}
+
+.color_12 {
+    background-color: #5c1165;
+}
+
+.color_12_ {
+    background-image: linear-gradient(90deg, #5c1165, #d8b3dc);
+}
+
+.color_14 {
+    background-color: #651141;
+}
+
+.color_14_ {
+    background-image: linear-gradient(90deg, #651141, #dcb3bb);
+}
+
+
+.color_13 {
+    background-color: #5eac79;
+}
+
+.color_13_ {
+    background-image: linear-gradient(90deg, #5eac79, #bae6c9);
+}
+
+@media (max-width:600px) {
+    .left {
+        width: 100%;
+        float: center;
+        margin-top: -1px;
+        text-align: center;
+    }
+
+    .right {
+        width: 100%;
+        float: center;
+        margin-top: -1px;
+        text-align: center;
+    }
+
+    .fa-brands {
+        color: white;
+        font-size: 16px;
+        padding-left: 10px;
+    }
+
+    .rights p {
+        font-size: 9px;
+    }
+
+}

@@ -5,10 +5,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تفاصيل المكان</title>
-    <link rel="icon" href="image.png"  />
-    <link rel="stylesheet" href="style.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkoxh5Ajf2GgqRp1hvq8hqGr63Avn62q0&callback=initMap"
         async defer></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,700,700i&display=swap");
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #739379;
+    font-family: Rubik;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#placeDetails {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: justify;
+}
+
+#placeDetails p {
+    margin: 0;
+}
+
+#imgs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; /* ترتيب الصور */
+}
+
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #2405F2;
+    text-decoration: none;
+}
+
+button {
+    font-family: Rubik;
+    padding: 10px 20px;
+    background-color: #116446;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1b0487;
+}
+
+.place-img {
+    width: 40%; 
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover; 
+}
+
+#imgs {
+    display: block;
+    justify-content: space-around; 
+}
+
+#designs {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
+    width: 90%; 
+    max-width: 1000px; 
+}
+
+#designs ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+}
+
+#designs ul li {
+    flex: 0 0 auto;
+    margin-right: 10px; 
+    width: 50%; 
+    max-width: 500px; 
+}
+
+.design img {
+    width: 100%; 
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover; 
+    border: 2px solid transparent;
+}
+
+.design.selected img {
+    border-color: green;
+    
+}
+
+#commentsSection {
+    margin-top: 30px;
+}
+
+#nameInput{
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 50%;
+    height: 25px;
+    padding: 10px;
+}
+
+#commentInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#comments {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+    </style>
 </head>
 
 <body>
@@ -93,6 +254,8 @@
                     <center><p><strong></strong> <a href="${place.link}" target="_blank"><i class="fa-solid fa-map-location-dot" style="font-size: 30px;color: #541d38;"></i></a></p></center>
                     <br><p><strong>المميزات:</strong><br> ${place.charcterstic}</p><br>
                     <p><strong>الخدمات:</strong><br> ${place.serves}</p>
+                    <br><br>
+                    <a id="p"  href="Edit.html?name=${encodeURIComponent(place.name)}"> <button  target="blank">تعديل</button> </a>
                 `;
 
                 eventDetailsContainer.innerHTML = eventDetailsHTML;

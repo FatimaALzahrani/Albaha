@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المكان</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkoxh5Ajf2GgqRp1hvq8hqGr63Avn62q0&callback=initMap"
+        async defer></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,700,700i&display=swap");
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #739379;
+            font-family: Rubik;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #placeDetails {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: justify;
+        }
+
+        #placeDetails p {
+            margin: 0;
+        }
+
+        #imgs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            /* ترتيب الصور */
+        }
+
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #2405F2;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: Rubik;
+            padding: 10px 20px;
+            background-color: #116446;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1b0487;
+        }
+
+        .place-img {
+            width: 40%;
+            height: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        #imgs {
+            display: block;
+            justify-content: space-around;
+        }
+
+        #designs {
+            position: relative;
+            overflow: hidden;
+            margin: 20px auto 0 auto;
+            border-radius: 4px;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        #designs ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        #designs ul li {
+            flex: 0 0 auto;
+            margin-right: 10px;
+            width: 50%;
+            max-width: 500px;
+        }
+
+        .design img {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid transparent;
+        }
+
+        .design.selected img {
+            border-color: green;
+
+        }
+
+        #commentsSection {
+            margin-top: 30px;
+        }
+
+        #nameInput {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 50%;
+            height: 25px;
+            padding: 10px;
+        }
+
+        #commentInput {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #comments {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        textarea,
+        input {
+            width: 100%;
+            height: max-content;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input id="title">
+        <div id="placeDetails"></div>
+        <div id="map" style="width: 100%; height: 200px; margin-bottom: 20px;"></div>
+
+        <h3>التعليقات</h3>
+        <div id="commentsSection">
+            <div id="comments"></div>
+            <input type="text" id="nameInput" placeholder="أدخل اسمك">
+            <textarea id="commentInput" placeholder="أضف تعليقك هنا"></textarea>
+            <button onclick="addComment()">إرسال</button>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/d5c6986420.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3mRpVul1lr2Ho0ZowXtOSWdk5jxpS008",
+            authDomain: "albaha-cb071.firebaseapp.com",
+            databaseURL: "https://albaha-cb071-default-rtdb.firebaseio.com",
+            projectId: "albaha-cb071",
+            storageBucket: "albaha-cb071.appspot.com",
+            messagingSenderId: "81343445763",
+            appId: "1:81343445763:web:c7fdd485e1a0c1e3094736",
+            measurementId: "G-HGCPPH9DV9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventName = urlParams.get('name');
+
+        const eventsRef = firebase.database().ref('events');
+
+        eventsRef.on('value', function (snapshot) {
+            const eventsData = snapshot.val();
+
+            if (eventsData) {
+                for (const eventId in eventsData) {
+                    const event = eventsData[eventId];
+                    if (event.name === eventName) {
+                        displayEventDetails(event);
+                        break;
+                    }
+                }
+            }
+        });
+
+        function displayEventDetails(place) {
+            const title = document.getElementById('title');
+            const eventDetailsContainer = document.getElementById('placeDetails');
+
+            if (eventDetailsContainer) {
+                let imagesHTML = '';
+                if (place.img && place.img != 'null') {
+                    imagesHTML += `<img src="${place.img}" alt="صورة" class="place-img">`;
+                }
+                if (place.img1 && place.img1 != 'null') {
+                    imagesHTML += `<img src="${place.img1}" alt="صورة" class="place-img">`;
+                }
+                if (place.img2 && place.img2 != 'null') {
+                    imagesHTML += `<img src="${place.img2}" alt="صورة" class="place-img">`;
+                }
+                if (place.img3 && place.img3 != 'null') {
+                    imagesHTML += `<img src="${place.img3}" alt="صورة" class="place-img">`;
+                }
+
+                const eventDetailsHTML = `
+            <textarea id="description" >${place.description}</textarea>
+            <br>
+            <label for="img"> رابط الصورة الاساسية</label>
+            <a href="https://postimages.org/" target="_blank">رابط مساعد لتحويل الصورة لرابط مباشر نختار</a>
+            <br>
+
+<br>
+            <input type="text" id="img" name="img" value="${place.img}" placeholder="التاكد من ان الصورة تنتهي ب .png , .jpg ..">
+
+            <label for="img"> رابط الصور الثانية</label>
+            <input type="text" id="img1" name="img1" value="${place.img1}"/>
+            <input type="text" id="img2" name="img2" value="${place.img2}" >
+            <input type="text" id="img3" name="img3" value="${place.img3}" >
+
+            <center>
+                <div id="imgs">${imagesHTML}</div>
+            </center>
+                    <p><strong>كلمة رئيسية:</strong></p><br>
+                    <input id="keyword" value="${place.keyword}">
+                    <p><strong>نوع المكان:</strong></p><br>
+                    <label for="type"> اختر نوع المكان </label>
+            <select id="type" name="type" value="${place.type}">
+                <option value="${place.type}">${place.type}</option>
+                <option value="مطعم">مطعم</option>
+                <option value="فندق">فندق</option>
+                <option value="منتزة">منتزة</option>
+                <option value="وادي">وادي</option>
+                <option value="سد">سد</option>
+                <option value="مول">مول</option>
+                <option value="نادي">نادي</option>
+                <option value="بقالة">بقالة</option>
+                <option value="مستشفى">مستشفى</option>
+                <option value="مقهى">مقهى</option>
+                <option value="مدرسة">مدرسة</option>
+                <option value="مسجد">مسجد</option>
+                <option value="سوق">سوق</option>
+            </select>
+                    <br>
+                    <p><strong>وصف الموقع:</strong></p><br>
+                    <textarea id="location" >${place.location}</textarea>
+                    <br>
+                    <br>
+                    <center><p><strong></strong> <a href="${place.link}" target="_blank"><i class="fa-solid fa-map-location-dot" style="font-size: 30px;color: #541d38;"></i></a></p></center>
+                    <br>
+                    <p>رابط قوقل ماب 'اذا ضغطتي مشاركة'</p>
+                    <input id="link" value="${place.link}">
+                    <br><p><strong>المميزات:</strong> 
+                    </p><br>
+                        <textarea id="charcterstic">${place.charcterstic}</textarea>
+                    <p><strong>الخدمات:</strong></p><br>
+                        <textarea id="serves" >${place.serves}</textarea>
+<br><br>
+<p><strong>رابط الخريطة التفاعلية:</strong></p><br>
+
+<p>رابط قوقل ماب 'من التصفح من فوق يكون فيه اسم المكان وارقام</p>
+                            <input placeholder="رابط قوقل ماب 'من التصفح من فوق يكون فيه اسم المكان وارقام'" id="url" value=${place.url}>
+
+                            <button onclick="saveEdits()">حفظ التعديلات</button>
+
+                `;
+                // Details.html?name=${encodeURIComponent(place.name)}
+                eventDetailsContainer.innerHTML = eventDetailsHTML;
+                title.value = place.name;
+
+
+                const coords = extractCoordinates(place.url);
+                if (coords) {
+                    initMap(coords.lat, coords.lng);
+                }
+            }
+        }
+
+        function extractCoordinates(link) {
+            if (link) {
+                const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+                const match = link.match(regex);
+                if (match) {
+                    return {
+                        lat: parseFloat(match[1]),
+                        lng: parseFloat(match[2])
+                    };
+                }
+            }
+            return null;
+        }
+
+
+        // إعداد الخريطة
+        function initMap(lat = 20.012, lng = 41.467) {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: lat, lng: lng },
+                zoom: 12
+            });
+
+            new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map
+            });
+        }
+
+        window.initMap = initMap;
+
+
+        function saveEdits() {
+            const name = document.getElementById('title').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const img = document.getElementById('img').value.trim();
+            const img1 = document.getElementById('img1').value.trim();
+            const img2 = document.getElementById('img2').value.trim();
+            const img3 = document.getElementById('img3').value.trim();
+            const keyword = document.getElementById('keyword').value.trim();
+            const type = document.getElementById('type').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const link = document.getElementById('link').value.trim();
+            const charcterstic = document.getElementById('charcterstic').value.trim();
+            const serves = document.getElementById('serves').value.trim();
+            const url = document.getElementById('url').value.trim();
+            eventsRef.on('value', function (snapshot) {
+                const eventsData = snapshot.val();
+
+                if (eventsData) {
+                    for (const eventId in eventsData) {
+                        const event = eventsData[eventId];
+                        if (event.name === eventName) {
+                            const eventRef = firebase.database().ref('events').child(eventId);
+                            // استخدم update بدلاً من push إذا كان الهدف هو تحديث بيانات الحدث الحالي
+                            eventRef.update({
+                                name: name,
+                                description: description,
+                                img: img,
+                                img1: img1,
+                                img2: img2,
+                                img3: img3,
+                                keyword: keyword,
+                                type: type,
+                                location: location,
+                                link: link,
+                                charcterstic: charcterstic,
+                                serves: serves,
+                                url: url
+                            });
+
+                            alert('تمت تعديل البيانات بنجاح.');
+                            window.location.reload();
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+        // const updates = {
+
+        // };
+
+        //     firebase.database().ref('events/' + eventName).update(updates)
+        //         .then(() => {
+        //             console.log('تم حفظ التعديلات بنجاح');
+        //             // const newUrl = 'Details.html?name=' + encodeURIComponent(name);
+        //             // window.history.pushState({}, '', newUrl);
+        //         })
+        //         .catch((error) => {
+        //             console.error('حدث خطأ أثناء حفظ التعديلات', error);
+        //             alert('حدث خطأ أثناء حفظ التعديلات');
+        //         });
+        // }
+
+        function addComment() {
+            const commentInput = document.getElementById('commentInput');
+            const nameInput = document.getElementById('nameInput');
+            const commentText = commentInput.value.trim();
+            const commentName = nameInput.value.trim();
+            if (commentText == '') {
+                commentInput.style.borderBlockColor = 'red';
+            }
+            if (commentName == '') {
+                nameInput.style.borderBlockColor = 'red';
+            }
+            if (commentText != '' && commentName != '') {
+                const newCommentRef = firebase.database().ref('comments/' + eventName).push();
+                newCommentRef.set({
+                    name: commentName,
+                    text: commentText,
+                    timestamp: Date.now()
+                });
+
+                commentInput.value = '';
+                nameInput.value = '';
+            }
+        }
+
+
+          function displayComment(comment) {
+            const commentsContainer = document.getElementById('comments');
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `
+                <p><strong>${comment.name}</strong></p>
+                <p>${comment.text}</p>
+                <small>${new Date(comment.timestamp).toLocaleString()}</small>
+                <i class="fas fa-trash" style="cursor: pointer; color: red;" onclick="deleteComment('${comment.id}')"></i>
+            `;
+            commentsContainer.appendChild(commentElement);
+        }
+
+        function deleteComment(commentId) {
+            firebase.database().ref('comments/' + eventName + '/' + commentId).remove();
+            alert('تم حذف التعليق بنجاح.');
+            window.location.reload();
+        }
+
+        firebase.database().ref('comments/' + eventName).on('child_added', function (snapshot) {
+            const comment = snapshot.val();
+            comment.id = snapshot.key; // Add Comment ID
+            displayComment(comment);
+        });
+    </script>
+</body>
+
+</html>
