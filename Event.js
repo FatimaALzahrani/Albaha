@@ -19,10 +19,10 @@ firebase.initializeApp(firebaseConfig)
 var eventsRef = firebase.database().ref('events');
 var typeDropdown = document.getElementById('type-dropdown');
 var eventsContainer = document.getElementById('Explore');
-
+var eventsData; 
 
 eventsRef.once('value', function (snapshot) {
-    let eventsData = snapshot.val();
+    eventsData = snapshot.val();
     let eventsArray = Object.values(eventsData);
     eventsArray.sort((a, b) => {
         let dateA = new Date(a.year, a.monthN - 1, a.day).getTime();
@@ -33,6 +33,7 @@ eventsRef.once('value', function (snapshot) {
     displayEvents2(eventsArray);
 });
 
+var searchBar = document.getElementById('search-bar');
 
 function displayEvents2(eventsData) {
     eventsContainer.innerHTML = '';
@@ -43,6 +44,11 @@ function displayEvents2(eventsData) {
         displayEvents2(eventsData);
     });
 
+    // searchBar.addEventListener('input', function () {
+    //     displayEvents2(eventsData);
+    // });
+    // var searchText = searchBar.value;
+
     for (var eventId in eventsData) {
         var event = eventsData[eventId];
 
@@ -52,11 +58,14 @@ function displayEvents2(eventsData) {
             || (typeDropdown.value === 'نادي' && event.type === 'نادي') || (typeDropdown.value === 'مقهى' && event.type === 'مقهى') || (typeDropdown.value === 'مطعم' && event.type === 'مطعم')
             || (typeDropdown.value === 'فندق' && event.type === 'فندق') || (typeDropdown.value === 'وادي' && event.type === 'وادي') || (typeDropdown.value === 'بقالة' && event.type === 'بقالة')
             || (typeDropdown.value === 'مستشفى' && event.type === 'مستشفى'))) {
+                // if(searchText==''||event.name.includes(searchText) || event.type.includes(searchText) || event.description.includes(searchText) || event.keyword.includes(searchText)  || 
+                // event.location.includes(searchText) ||event.serves.includes(searchText) ||event.charcterstic.includes(searchText) ){
+
                 var template = getData(event);
                 repeatedCode += template;
                 count++;
             }
-    }
+        }
     var myDiv = document.getElementById("NoEvent");
     if (count == 0) {
         myDiv.style.display = "block";
@@ -67,22 +76,44 @@ function displayEvents2(eventsData) {
 }
 
 
+document.getElementById("search-button").addEventListener("click", function() {
+    var searchText = document.getElementById("search-bar").value;
+    eventsContainer.innerHTML = '';
+    var repeatedCode = '';
+    count = 0;
+        // searchBar.addEventListener('input', function () {
+    //     displayEvents2(eventsData);
+    // });
+    var searchText = searchBar.value;
 
-// دالة للتحقق من أن الفعالية قادمة
-function isEventComing(event) {
-    var eventDate = new Date(event.year, event.monthN - 1, event.day);
-    var currentDate = new Date(currentYear, currentMonth - 1, currentDay);
-    return eventDate > currentDate;
-}
+    for (var eventId in eventsData) {
+        var event = eventsData[eventId];
 
-// دالة للتحقق من أن الفعالية قد مرت
-function isEventPast(event) {
-    var eventDate = new Date(event.year, event.monthN - 1, event.day);
-    var currentDate = new Date(currentYear, currentMonth - 1, currentDay);
-    return eventDate < currentDate;
-}
+            if ((typeDropdown.value === 'all') || (typeDropdown.value === 'مسجد' && event.type === 'مسجد') || (typeDropdown.value === 'مدرسة' && event.type === 'مدرسة') || (typeDropdown.value === 'منتزة' && event.type === 'منتزة'
+            || (typeDropdown.value === 'مول' && event.type === 'مول') || (typeDropdown.value === 'سد' && event.type === 'سد') || (typeDropdown.value === 'سوق' && event.type === 'سوق')
+            || (typeDropdown.value === 'نادي' && event.type === 'نادي') || (typeDropdown.value === 'مقهى' && event.type === 'مقهى') || (typeDropdown.value === 'مطعم' && event.type === 'مطعم')
+            || (typeDropdown.value === 'فندق' && event.type === 'فندق') || (typeDropdown.value === 'وادي' && event.type === 'وادي') || (typeDropdown.value === 'بقالة' && event.type === 'بقالة')
+            || (typeDropdown.value === 'مستشفى' && event.type === 'مستشفى'))) {
+                if(searchText==''||event.name.includes(searchText) || event.type.includes(searchText) || event.description.includes(searchText) || event.keyword.includes(searchText)  || 
+                event.location.includes(searchText) ||event.serves.includes(searchText) ||event.charcterstic.includes(searchText) ){
 
-// دالة للحصول على القالب
+                var template = getData(event);
+                repeatedCode += template;
+                count++;
+            }
+        }
+    }
+    var myDiv = document.getElementById("NoEvent");
+    if (count == 0) {
+        myDiv.style.display = "block";
+    } else {
+        myDiv.style.display = "none";
+    }
+    eventsContainer.innerHTML = repeatedCode;
+});
+
+
+
 function getData(event) {
     var template = `
         <div class="rectangle">
